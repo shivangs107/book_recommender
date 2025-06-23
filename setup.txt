@@ -1,17 +1,22 @@
 //1 libraries
-python -m pip install kagglehub
-python -m pip install matplotlib pandas seaborn
-python -m pip install python-dotenv
-python -m pip install langchain langchain-community langchain-openai chromadb tiktoken
-python -m pip install transformers
-python -m pip install gradio
+pip install pandas -> Work with tabular data
+pip install matplotlib seaborn -> For visualization
+pip install python-dotenv -> For API credential access
+pip install langchain langchain-community langchain-openai chromadb tiktoken -> Working with LLM
+pip install transformers -> Work with Open source LLM
+pip install gradio -> Framwork to interact with recommender
 
 //2 dataset
 https://www.kaggle.com/datasets/dylanjcastillo/7k-books-with-metadata
 done exploration through-> data_exploration.py
 Findings:
+>>All unique isbn (No repeated books)
+>>subtitle column has lots of missing observations (4429/6810)
+>>Lots of categories (567) with uneven distribution (Majority Fiction) -> Long Tail Problem
+>>Some description have very words making them meaningless
+Done:
 >>deleted missing observations (~300 deleted)
->>uneven distribution of categories -> long tail problem
->>removed whose description less than 25 words (~5200 remaining)
+>>Removed books with minimum words in description < 25 (5197 Remains)
 
+*Pearson when dealing with continuous values and spearman when non-continuous
 //3 Word embedding on clean dataset
