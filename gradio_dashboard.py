@@ -3,26 +3,28 @@ import numpy as np
 from dotenv import load_dotenv
 
 from langchain_community.document_loaders import TextLoader
-from langchain_openai import OpenAIEmbeddings
+from langchain_community.embeddings import HuggingFaceEmbeddings
 from langchain_text_splitters import CharacterTextSplitter
-from langchain_chroma import Chroma
+from langchain.vectorstores import Chroma
+from langchain_community.vectorstores import Chroma
 
 import gradio as gr
 
 load_dotenv()
 
 books = pd.read_csv("books_with_emotions.csv")
-books["large_thumbnail"] = books["thumbnail"] + "&fife=w800"
+books["large_thumbnail"] = books["thumbnail"] + "&fife=w800" #For large resolution images
 books["large_thumbnail"] = np.where(
     books["large_thumbnail"].isna(),
     "cover-not-found.jpg",
     books["large_thumbnail"],
 )
 
-raw_documents = TextLoader("tagged_description.txt").load()
-text_splitter = CharacterTextSplitter(separator="\n", chunk_size=0, chunk_overlap=0)
+raw_documents = TextLoader("tagged_description.txt", encoding="utf-8").load() #Loading raw text file
+text_splitter = CharacterTextSplitter(separator="\n", chunk_size=0, chunk_overlap=0) #Splitting text inro chunks
 documents = text_splitter.split_documents(raw_documents)
-db_books = Chroma.from_documents(documents, OpenAIEmbeddings())
+embedding = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2") #Using hugging face embedding
+db_books = Chroma.from_documents(documents, embedding=embedding) #Creating chroma vector database
 
 
 def retrieve_semantic_recommendations(

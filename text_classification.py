@@ -26,17 +26,21 @@ books["simple_categories"] = books["categories"].map(category_mapping)
 books
 # %%
 books[~(books["simple_categories"].isna())]
+
+# %%
+import torch
+print("CUDA available:", torch.cuda.is_available())
+print("MPS available:", hasattr(torch.backends, "mps") and torch.backends.mps.is_available())
+
 # %%
 from transformers import pipeline
-
 fiction_categories = ["Fiction", "Nonfiction"]
+pipe = pipeline("zero-shot-classification", model="facebook/bart-large-mnli")
 
-pipe = pipeline("zero-shot-classification",
-                model="facebook/bart-large-mnli",
-                device="mps")
 # %%
 sequence = books.loc[books["simple_categories"] == "Fiction", "description"].reset_index(drop=True)[0]
 pipe(sequence, fiction_categories)
+
 # %%
 import numpy as np
 

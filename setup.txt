@@ -1,0 +1,17 @@
+//1 libraries
+python -m pip install kagglehub
+python -m pip install matplotlib pandas seaborn
+python -m pip install python-dotenv
+python -m pip install langchain langchain-community langchain-openai chromadb tiktoken
+python -m pip install transformers
+python -m pip install gradio
+
+//2 dataset
+https://www.kaggle.com/datasets/dylanjcastillo/7k-books-with-metadata
+done exploration through-> data_exploration.py
+Findings:
+>>deleted missing observations (~300 deleted)
+>>uneven distribution of categories -> long tail problem
+>>removed whose description less than 25 words (~5200 remaining)
+
+//3 Word embedding on clean dataset
