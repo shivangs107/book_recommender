@@ -18,6 +18,7 @@ Done:
 >>deleted missing observations (~300 deleted)
 >>Removed books with minimum words in description < 25 (5197 Remains)
 >>added taged description field for easy searching
+>>Saving-> books_cleaned.scv
 
 *Pearson when dealing with continuous values and spearman when non-continuous
 //3 Word embedding on clean dataset
@@ -35,3 +36,16 @@ def retrieve_semantic_recommendations(
         books_list += [int(recs[i].page_content.strip('"').split()[0])]
     return books[books["isbn13"].isin(books_list)]
 retrieve_semantic_recommendations("A book to teach children about nature")
+>>Saving in tagged_description.txt
+
+//4 Text classification
+>>Filtering popular categories (Entries > 50)
+>>Simplifying complex categories into fiction, non-fiction and children category
+>>Used Zero-Shot classification by bart ( a machine learning technique where a model can classify data into 
+categories it has never explicitly been trained on. It leverage pre-existing knowledge to make 
+predictions without fine-tuning.)
+>>Model validation -> 78% accuracy
+>>Updating categories with model predictions where missing
+>>Saving file-> books_with_categories.csv
+
+//5 
