@@ -1,10 +1,16 @@
 # %%
+#Importing Libraries
 import pandas as pd
+from transformers import pipeline
+import numpy as np
+from tqdm import tqdm
 
+# %%
+#Loading updated data
 books = pd.read_csv("books_with_categories.csv")
 
 # %%
-from transformers import pipeline
+#Choosing fine tuned model for text classification
 classifier = pipeline("text-classification",
                       model="j-hartmann/emotion-english-distilroberta-base",
                       top_k = None,
@@ -12,37 +18,27 @@ classifier = pipeline("text-classification",
 classifier("I love this!")
 
 # %%
+#Testing
 books["description"][0]
-
-# %%
 classifier(books["description"][0])
 
 # %%
+#Splitting into multiple sentences for better classification
 classifier(books["description"][0].split("."))
 
 # %%
+#Checking if its worked
 sentences = books["description"][0].split(".")
 predictions = classifier(sentences)
 sentences[0]
-
-# %%
 predictions[0]
 
 # %%
-sentences[3]
-
-# %%
-predictions[3]
-
-# %%
-predictions
-
-# %%
+#Sorting the score
 sorted(predictions[0], key=lambda x: x["label"])
 
 # %%
-import numpy as np
-
+#Function to get max emotion probability for each emotion for each description
 emotion_labels = ["anger", "disgust", "fear", "joy", "sadness", "surprise", "neutral"]
 isbn = []
 emotion_scores = {label: [] for label in emotion_labels}
@@ -56,6 +52,7 @@ def calculate_max_emotion_scores(predictions):
     return {label: np.max(scores) for label, scores in per_emotion_scores.items()}
 
 # %%
+#Testing the function
 for i in range(10):
     isbn.append(books["isbn13"][i])
     sentences = books["description"][i].split(".")
@@ -63,13 +60,10 @@ for i in range(10):
     max_scores = calculate_max_emotion_scores(predictions)
     for label in emotion_labels:
         emotion_scores[label].append(max_scores[label])
-
-# %%
 emotion_scores
 
 # %%
-from tqdm import tqdm
-
+#Implementing the function for all data
 emotion_labels = ["anger", "disgust", "fear", "joy", "sadness", "surprise", "neutral"]
 isbn = []
 emotion_scores = {label: [] for label in emotion_labels}
@@ -85,17 +79,15 @@ for i in tqdm(range(len(books))):
 # %%
 emotions_df = pd.DataFrame(emotion_scores)
 emotions_df["isbn13"] = isbn
-
-# %%
 emotions_df
 
 # %%
+#merging back to data
 books = pd.merge(books, emotions_df, on = "isbn13")
-
-# %%
 books
 
 # %%
+#Saving the emotions in new csv file
 books.to_csv("books_with_emotions.csv", index = False)
 
 # %%

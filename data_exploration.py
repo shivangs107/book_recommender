@@ -1,6 +1,12 @@
 # %%
-#Viewing data
+#Importing Libraries
 import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+import numpy as np
+
+# %%
+#Viewing data
 books=pd.read_csv("books.csv")
 print(books)
 
@@ -34,8 +40,6 @@ print(summary)
 
 # %%
 #Checking connections between missing values using heatmap
-import seaborn as sns
-import matplotlib.pyplot as plt
 ax=plt.axes()
 sns.heatmap(books.isna().transpose(), cbar=False, ax=ax)
 plt.xlabel("Columns")
@@ -44,7 +48,6 @@ plt.show()
 
 # %%
 #Checking relationship between missing values
-import numpy as np
 books["missing_description"] = np.where(books["description"].isna(), 1, 0)
 books["age_of_book"] = 2024 - books["published_year"]
 columns_of_interest = ["num_pages", "age_of_book", "missing_description", "average_rating"]
