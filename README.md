@@ -10,6 +10,7 @@ A semantic book recommendation system that:
 - Presents results in an interactive Gradio interface
 
 ## 🏗️ Project Architecture
+<pre> ```plaintext
 book_recommender/
 ├── data/
 │ ├── raw/ # Original datasets
@@ -19,6 +20,7 @@ book_recommender/
 │ └── data_processing/ # Data pipeline scripts
 ├── app/ # Gradio application
 ├── requirements.txt # Dependencies
+``` </pre>
 
 ## 🔧 Installation
 1. Clone the repository:
@@ -86,6 +88,6 @@ def retrieve_semantic_recommendations(query, category, tone):
     # 2. Category filtering
 
     # 3. Emotion-based sorting
-    
+
     # Returns top 16 relevant books
 
