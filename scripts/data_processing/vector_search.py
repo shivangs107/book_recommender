@@ -13,20 +13,20 @@ load_dotenv()
 
 # %%
 #Loading clean books data
-books = pd.read_csv("books_cleaned.csv")
+books = pd.read_csv("../../data/processed/books_cleaned.csv")
 books
 
 # %%
 #Created tagged_description txt file
 books["tagged_description"]
-books["tagged_description"].to_csv("tagged_description.txt",
+books["tagged_description"].to_csv("../../data/processed/tagged_description.txt",
                                    sep = "\n",
                                    index = False,
                                    header = False)
 
 # %%
 # Set encoding explicitly
-raw_documents = TextLoader("tagged_description.txt", encoding="utf-8").load()
+raw_documents = TextLoader("../../data/processed/tagged_description.txt", encoding="utf-8").load()
 
 # Now split the documents
 text_splitter = CharacterTextSplitter(chunk_size=0, chunk_overlap=0, separator="\n")

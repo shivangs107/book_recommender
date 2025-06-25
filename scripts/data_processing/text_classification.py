@@ -7,7 +7,7 @@ from tqdm import tqdm #For progress bar as classification will take time
 
 # %%
 #Loading clean data
-books = pd.read_csv("books_cleaned.csv")
+books = pd.read_csv("../../data/processed/books_cleaned.csv")
 
 # %%
 #Categories having > 50 books 
@@ -111,5 +111,5 @@ books
 
 # %%
 #Saving updated one
-books.to_csv("books_with_categories.csv", index=False)
+books.to_csv("../../data/processed/books_with_categories.csv", index=False)
 # %%

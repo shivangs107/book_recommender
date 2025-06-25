@@ -7,7 +7,7 @@ from tqdm import tqdm
 
 # %%
 #Loading updated data
-books = pd.read_csv("books_with_categories.csv")
+books = pd.read_csv("../../data/processed/books_with_categories.csv")
 
 # %%
 #Choosing fine tuned model for text classification
@@ -88,6 +88,6 @@ books
 
 # %%
 #Saving the emotions in new csv file
-books.to_csv("books_with_emotions.csv", index = False)
+books.to_csv("../../data/processed/books_with_emotions.csv", index = False)
 
 # %%

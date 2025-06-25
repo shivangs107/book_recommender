@@ -1,3 +1,35 @@
+#Architecture
+book_recommender/
+├── data/
+│   ├── raw/                  # Original raw data files
+│   │   ├── books.csv
+│   ├── processed/            # Processed data files
+│   │   ├── book_cleaned.csv
+│   │   ├── books_with_categories.csv
+│   │   ├── books_with_emotions.csv
+│   │   ├── tagged_description.txt
+│   ├── assets/               # Static files
+│   │   ├── cover-not-found.jpg
+│
+├── scripts/
+│   ├── data_processing/      # Data manipulation scripts
+│   │   ├── data_exploration.py
+│   │   ├── sentiment_analysis.py
+│   │   ├── text_classification.py
+│   │   ├── vector_search.py
+│   │   ├── __init__.py (empty)
+│
+├── app/                     # Application files
+│   ├── gradio_dashboard.py   # Main application
+│   ├── __init__.py (empty)
+│
+├── requirements.txt          # Python dependencies
+├── setup.txt                 # Setup instructions
+├── README.md                 # Project documentation
+├── .gitignore
+├── .env 
+
+
 //1 libraries
 pip install pandas -> Work with tabular data
 pip install matplotlib seaborn -> For visualization
@@ -70,3 +102,33 @@ def calculate_max_emotion_scores(predictions):
     return {label: np.max(scores) for label, scores in per_emotion_scores.items()}
 >>Created a dataframe for emotion scores
 >>Merged emotions back into original data and saved it-> books_with_emotions.csv
+
+//6 Gradio dashboard
+>>Loading book data from books_with_emotions.csv
+>>Taking higher resolution of thumbnail url
+>>Giving default image to missing thumbnail
+>>Loading text data from "tagged_description.txt"
+>>Splitting documents into chunks (line by line)
+>>Creating a Chroma vector database from the documents
+>>Recommendation System:
+retrieve_semantic_recommendations():
+    Finds similar books using vector similarity search
+    Filters by category if specified
+    Sorts by emotional tone (joy, surprise, anger, fear, sadness)
+recommend_books():
+    Processes recommendations into display format
+    Formats author lists and truncates descriptions
+    Prepares thumbnails and captions for display
+>>UI Creation
+input components:
+    Textbox for book description queries
+    Dropdowns for category and emotional tone selection
+output component:
+    Gallery to display book recommendations (8 columns × 2 rows)
+Connecting button click to recommendation function
+
+*****Overall Purpose*****
+Uses semantic search to find relevant books
+Allows filtering by category
+Can prioritize books with specific emotional tones
+Presents results in a visually appealing gallery format

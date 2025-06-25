@@ -7,7 +7,7 @@ import numpy as np
 
 # %%
 #Viewing data
-books=pd.read_csv("books.csv")
+books=pd.read_csv("../../data/raw/books.csv")
 print(books)
 
 # %%
@@ -113,6 +113,6 @@ book_missing_25_words
 (
     book_missing_25_words
     .drop(["subtitle", "missing_description", "age_of_book", "words_in_description"], axis=1)
-    .to_csv("books_cleaned.csv", index = False)
+    .to_csv("../../data/processed/books_cleaned.csv", index = False)
 )
 # %%
