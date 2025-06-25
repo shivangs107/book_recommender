@@ -20,7 +20,6 @@ book_recommender/
 ├── app/ # Gradio application
 ├── requirements.txt # Dependencies
 
-
 ## 🔧 Installation
 1. Clone the repository:
    ```bash
@@ -35,8 +34,11 @@ python app/gradio_dashboard.py
 
 ## Features
 Semantic Search: Find books similar to your description
+
 Category Filtering: Fiction/Nonfiction/Children
+
 Emotional Sorting: Happy, Sad, Surprising, etc.
+
 Visual Gallery: 16-book display with covers
 
 ## Data Pipeline
@@ -78,8 +80,12 @@ Key Features:
 
 ## Recommendation Logic
 def retrieve_semantic_recommendations(query, category, tone):
+
     # 1. Vector similarity search
+
     # 2. Category filtering
+
     # 3. Emotion-based sorting
+    
     # Returns top 16 relevant books
 
