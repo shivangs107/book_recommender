@@ -10,7 +10,7 @@ A semantic book recommendation system that:
 - Presents results in an interactive Gradio interface
 
 ## 🏗️ Project Architecture
-<pre> ```plaintext
+<pre>
 book_recommender/
 ├── data/
 │ ├── raw/ # Original datasets
@@ -20,7 +20,7 @@ book_recommender/
 │ └── data_processing/ # Data pipeline scripts
 ├── app/ # Gradio application
 ├── requirements.txt # Dependencies
-``` </pre>
+</pre>
 
 ## 🔧 Installation
 1. Clone the repository:
@@ -62,17 +62,17 @@ Visual Gallery: 16-book display with covers
         Output: tagged_description.txt
 
 ## Technical Stack
-<pre> ```plaintext
-Component	            Technology Used
+<pre>
+Component	                Technology Used
 Data Processing	                Pandas, NumPy
 NLP Models	                Transformers, LangChain
 Vector Database	                Chroma
 Embeddings	                all-MiniLM-L6-v2
 UI Framework	                Gradio
-``` </pre>
+</pre>
 
 ## Data Insights
-<pre> ```plaintext
+<pre>
 Original: 6,810 books
 After cleaning: 5,197 books
 Key Features:
@@ -82,7 +82,7 @@ Key Features:
     Categories
     Description (avg. 87 words)
     Emotional scores
-``` </pre>
+</pre>
 
 ## Recommendation Logic
 def retrieve_semantic_recommendations(query, category, tone):
