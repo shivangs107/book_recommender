@@ -62,14 +62,17 @@ Visual Gallery: 16-book display with covers
         Output: tagged_description.txt
 
 ## Technical Stack
+<pre> ```plaintext
 Component	            Technology Used
-Data                    Processing	Pandas, NumPy
-NLP Models	            Transformers, LangChain
-Vector Database	        Chroma
-Embeddings	            all-MiniLM-L6-v2
-UI Framework	        Gradio
+Data Processing	                Pandas, NumPy
+NLP Models	                Transformers, LangChain
+Vector Database	                Chroma
+Embeddings	                all-MiniLM-L6-v2
+UI Framework	                Gradio
+``` </pre>
 
 ## Data Insights
+<pre> ```plaintext
 Original: 6,810 books
 After cleaning: 5,197 books
 Key Features:
@@ -79,6 +82,7 @@ Key Features:
     Categories
     Description (avg. 87 words)
     Emotional scores
+``` </pre>
 
 ## Recommendation Logic
 def retrieve_semantic_recommendations(query, category, tone):
