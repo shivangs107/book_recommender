@@ -1,0 +1,14 @@
+1) Firstly written the dockerfile and dockerignore file (not necessary here but for good practise).
+2) Only the gradio_dashboard.py is the main app so created its requirements seperately for easy access.
+3) To build image: (after doing -> cd A:\Project\book_recommender)
+    docker build -t book-recommender .
+    docker run -p 7860:7860 book-recommender
+4) After finding huge image size (10GB) found it is unintentionally pulling PyTorch with CUDA (GPU) support, 
+which brings massive NVIDIA CUDA libraries
+5) Updated dockerfile and requirements-docker.txt
+6) docker image prune -a (to delete image without container)
+7) Wriring proper versions in requirements-docker.txt
+8) Running on localhost:7860
+9) To stop: 
+    If not in detached mode -> CTRL + C
+    Otherwise, new terminal> docker ps> docker stop <id/name>

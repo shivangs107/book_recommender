@@ -1,4 +1,4 @@
-#Architecture
+#Architecture (A:\Project\book_recommender)
 book_recommender/
 ├── data/
 │   ├── raw/                  # Original raw data files
