@@ -1,0 +1,15 @@
+>What is GitHub Actions?
+Platform to automate developer workflows.
+CI/CD is one of many workflows.
+It consist of 3 things:
+    name, on and jobs
+
+>Build docker image and push to docker hub.
+    Need dockerhub username and a personel access token and add it to Actions>secrets>repository secret
+    ci.yml should be created in .github>workflows>ci.yml
+    In dockerhub a repository name book-recommender(as mentioned in ci.yml) must be created (username shivangs107 as mentioned in ci.yml)
+    **The username and repository name is respective**
+    Now on every commit to main it will run a workflow.
+    To access it:
+        docker pull shivangs107/book-recommender:latest
+        docker run -d -p 7860:7860 shivangs107/book-recommender
