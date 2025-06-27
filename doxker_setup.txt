@@ -5,10 +5,28 @@
     docker run -p 7860:7860 book-recommender
 4) After finding huge image size (10GB) found it is unintentionally pulling PyTorch with CUDA (GPU) support, 
 which brings massive NVIDIA CUDA libraries
+    RUN pip install --no-cache-dir \
+    --index-url https://download.pytorch.org/whl/cpu \
+    torch==2.2.2+cpu
 5) Updated dockerfile and requirements-docker.txt
+    pip freeze (To check libraries version)
+    # Install system-level dependencies for numpy, pandas, etc.
+    RUN apt-get update && apt-get install -y --no-install-recommends \
+        gcc \
+        g++ \
+        libffi-dev \
+        libglib2.0-0 \
+        libgl1 \
+        && rm -rf /var/lib/apt/lists/*
 6) docker image prune -a (to delete image without container)
 7) Wriring proper versions in requirements-docker.txt
 8) Running on localhost:7860
 9) To stop: 
     If not in detached mode -> CTRL + C
     Otherwise, new terminal> docker ps> docker stop <id/name>
+10) To check inside image
+    a) docker run -it book-recommender /bin/bash
+            du -h --max-depth=1 /usr/local
+            du -h --max-depth=1 /root
+            du -h --max-depth=1 /app
+    b) docker history book-recommender
