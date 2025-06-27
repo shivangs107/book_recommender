@@ -13,3 +13,5 @@ It consist of 3 things:
     To access it:
         docker pull shivangs107/book-recommender:latest
         docker run -d -p 7860:7860 shivangs107/book-recommender
+
+>Step names should be unique otherwise github might skip it
