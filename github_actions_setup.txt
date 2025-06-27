@@ -6,8 +6,9 @@ It consist of 3 things:
 
 >Build docker image and push to docker hub.
     Need dockerhub username and a personel access token and add it to Actions>secrets>repository secret
+    ***Access Token Should have read/write permission otherwise authentication error***
     ci.yml should be created in .github>workflows>ci.yml
-    In dockerhub a repository name book-recommender(as mentioned in ci.yml) must be created (username shivangs107 as mentioned in ci.yml)
+    In dockerhub a repository name book-recommender(as mentioned in ci.yml) must be created (username as mentioned in ci.yml)
     **The username and repository name is respective**
     Now on every commit to main it will run a workflow.
     To access it:
