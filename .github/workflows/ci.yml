@@ -53,4 +53,6 @@ jobs:
             --region asia-south2 \
             --platform managed \
             --allow-unauthenticated \
-            --port 7860
+            --port 7860 \
+            --memory 3Gi \
+            --cpu 1
